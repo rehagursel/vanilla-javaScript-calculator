@@ -1,0 +1,102 @@
+body {
+  background-color: rgba(189, 224, 254, 0.596);
+  font-family: "Inter", sans-serif;
+}
+.buttons {
+  box-shadow: 0.1em 0.1em 0.1em rgb(109, 109, 109);
+}
+
+.buttons:hover,
+.buttons:focus {
+  background-color:rgb(176, 217, 253) ;
+}
+
+.buttons:active {
+  background-color: rgba(189, 224, 254, 0.76);
+  box-shadow: inset 0.08em 0.08em 0.2em rgb(109, 109, 109);
+}
+
+.container {
+  width: 400px;
+  height: 500px;
+  margin: 100px auto;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, minmax(50px, auto));
+  gap: 1em;
+  padding: 2em;
+  background-color: rgb(218, 232, 255);
+  border: 1px solid rgba(156, 162, 173, 0.479);
+  border-radius: 2em;
+  box-shadow: 0.3em 0.4em 0.1em rgb(156, 162, 173);
+}
+
+div {
+  padding: 0.5em;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(189, 224, 254, 0.76);
+  border-radius: 0.7em;
+}
+
+p {
+  align-self: center;
+  font-weight: 600;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.541);
+}
+
+.screen p {
+  font-size: 35px;
+  font-weight: 600;
+  color: black;
+}
+
+.delete p {
+  font-size: 35px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.541);
+}
+
+.screen {
+  grid-column: 2/5;
+  grid-row: 1/2;
+  justify-content: flex-end;
+  background-color: rgb(28, 82, 82);
+  color: white;
+  box-shadow: inset 0.2em 0.3em 0.4em rgb(0, 0, 0);
+}
+
+.screen,
+.delete {
+  grid-row: 1/3;
+}
+
+.operators {
+  background-color: rgba(245, 179, 199, 0.5);
+  transition: background-color 100ms ease-in-out;
+}
+
+.operators:hover,
+.operators:focus {
+  background-color: rgba(245, 179, 199, 0.774);
+}
+
+.operators:active {
+  background-color: rgba(245, 179, 199, 0.5);
+}
+
+.equals {
+  background-color: rgb(195, 157, 218);
+}
+
+.equals:hover,
+.equals:focus {
+  background-color: rgb(196, 146, 228);
+  cursor: pointer;
+}
+
+.equals:active {
+  background-color: rgb(195, 157, 218);
+}
