@@ -1,5 +1,5 @@
 const screen = document.querySelector(`#screen`);
-const reset = document.querySelector(`.delete`);
+const resetButton = document.querySelector(`.delete`);
 const nums = document.querySelectorAll(`.num`);
 const dot = document.querySelector(`.dot`);
 const plus = document.querySelector(`.plus`);
@@ -16,12 +16,11 @@ let commonCount = 0;
 let equalsCount = 0;
 let show = 0;
 
-console.log(nums);
 for (let num of nums) {
   num.addEventListener("click", () => buttonPush(num));
 }
 
-reset.addEventListener("click", resetting);
+resetButton.addEventListener("click", reset);
 dot.addEventListener("click", buttonPushDot);
 plus.addEventListener("click", accumulate);
 equals.addEventListener("click", result);
@@ -31,7 +30,7 @@ multipless.addEventListener("click", multiples);
 
 function buttonPush(num) {
   if (equalsCount !== 0) {
-    resetting();
+    reset();
   }
 
   if (numbersRecent.length < 7) {
@@ -47,7 +46,7 @@ let counter = 0;
 
 function buttonPushDot() {
   if (equalsCount !== 0) {
-    resetting();
+    reset();
   }
   if (counter === 0) {
     if (numbersRecent.length < 7) {
@@ -60,7 +59,7 @@ function buttonPushDot() {
   counter++;
 }
 
-function resetting() {
+function reset() {
   screen.innerText = `0`;
   numbersRecent = [];
   numbersFirst = [];
@@ -71,7 +70,7 @@ function resetting() {
   operators = ``;
 }
 
-function resettingTwo() {
+function resetForNewNumber() {
   screen.innerText = show;
   numbersRecent = [];
   counter = 0;
@@ -83,10 +82,11 @@ function accumulate() {
   if (operators !== `` && commonCount < 1) {
     result();
   }
+
   if (commonCount < 1) {
     numbersFirst = [...numbersRecent];
     operators = `+`;
-    resettingTwo();
+    resetForNewNumber();
     commonCount++;
     equalsCount = 0;
   }
@@ -96,14 +96,16 @@ function minus() {
   if (operators !== `` && commonCount < 1) {
     result();
   }
+
   if (commonCount < 1) {
     numbersFirst = [...numbersRecent];
     operators = `-`;
-    resettingTwo();
+    resetForNewNumber();
     commonCount++;
     equalsCount = 0;
   }
 }
+
 function division() {
   if (operators !== `` && commonCount < 1) {
     result();
@@ -111,7 +113,7 @@ function division() {
   if (commonCount < 1) {
     numbersFirst = [...numbersRecent];
     operators = `/`;
-    resettingTwo();
+    resetForNewNumber();
     commonCount++;
     equalsCount = 0;
   }
@@ -124,7 +126,7 @@ function multiples() {
   if (commonCount < 1) {
     numbersFirst = [...numbersRecent];
     operators = `*`;
-    resettingTwo();
+    resetForNewNumber();
     commonCount++;
     equalsCount = 0;
   }
@@ -134,7 +136,7 @@ function result() {
   if (equalsCount < 1 && commonCount < 1) {
     let numOne = parseFloat(numbersFirst.join(``));
     let numTwo = parseFloat(numbersRecent.join(``));
-    console.log(typeof numOne);
+
     if (operators === `+`) {
       show = numOne + numTwo;
     } else if (operators === `-`) {
@@ -145,7 +147,7 @@ function result() {
       show = numOne * numTwo;
     }
 
-    if (show <= 9999999999999) {
+    if (show.toString().length <= 13) {
       screen.innerText = show;
     } else {
       alert(`Result is ${show} it is too long `);
